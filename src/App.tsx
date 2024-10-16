@@ -1,8 +1,9 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import AppLoading from "expo-app-loading";
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { ThemeProvider } from 'styled-components/native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import {
     useFonts,
@@ -17,6 +18,8 @@ import { DMSans_400Regular } from "@expo-google-fonts/dm-sans";
 import { DMSerifDisplay_400Regular } from "@expo-google-fonts/dm-serif-display";
 
 import COLORS from '../src/styles/theme';
+
+import { Login } from './screens/Login/Login';
 
 const App: React.FC = () => {
     const [fontsLoad] = useFonts({
@@ -34,23 +37,19 @@ const App: React.FC = () => {
     }
 
     return (
-        <ThemeProvider theme={COLORS}>
-            <StatusBar 
-                style='dark'
-                translucent
-                backgroundColor='transparent'
-            />
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <ThemeProvider theme={COLORS}>
+                <StatusBar 
+                    style='dark'
+                    translucent
+                    backgroundColor='transparent'
+                />
 
-            <View
-                style={{
-                    flex: 1,
-                    justifyContent: "center",
-                    alignItems: "center",
-                }}
-            >
-                <Text>BudgetWiseAPP</Text>
-            </View>
-        </ThemeProvider>
+                <View>
+                    <Login />
+                </View>
+            </ThemeProvider>
+        </GestureHandlerRootView>
     )
 }
 
